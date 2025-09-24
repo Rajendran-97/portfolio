@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ profile.name }} - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+            color: #333;
+        }
+
+        a { text-decoration: none; color: #1565c0; transition: 0.3s; }
+        a:hover { color: #0d47a1; }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .header-left h1 { margin: 0; font-size: 2.5rem; color: #1565c0; }
+        .header-left h3 { margin: 5px 0; color: #555; }
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1565c0;
+        }
+
+        /* Cards */
+        .card { background: #fff; padding: 20px; margin: 20px 0; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        .card h2 { margin-top: 0; color: #1565c0; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; }
+
+        /* Skills Section */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 15px; }
+        .skill-card {
+            background: #e3f2fd;
+            padding: 15px;
+            flex: 1 1 45%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            min-width: 220px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        .skill-card h3 { margin: 0 0 5px 0; color: #0d47a1; }
+
+        /* Coding Stats Row */
+        .stats-row { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .stat-card { flex: 1; margin: 10px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); min-width: 250px; transition: transform 0.3s, box-shadow 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .stat-card h2 { color: #1565c0; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; }
+
+        /* Sections Lists */
+        ul { padding-left: 20px; margin: 10px 0; }
+        li { margin-bottom: 8px; }
+
+        .section-header { background: #e3f2fd; padding: 5px 10px; border-radius: 5px; display: inline-block; margin-bottom: 10px; font-weight: bold; color: #0d47a1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>{{ profile.name }}</h1>
+                <h3>{{ profile.role }}</h3>
+                <div class="contact">
+                    <p><b>Email:</b> <a href="mailto:{{ profile.contact }}">{{ profile.contact }}</a></p>
+                    <p><b>Phone:</b> <a href="tel:{{ profile.phone }}">{{ profile.phone }}</a></p>
+                    <p><b>Resume:</b> <a href="{{ profile.resume }}" target="_blank">View / Download</a></p>
+                    <p><b>GitHub:</b> <a href="https://github.com/Rajendran-97" target="_blank">Rajendran-97</a></p>
+                </div>
+            </div>
+            <div class="header-right">
+                <img src="/static/profile.jpg" alt="Profile Photo" class="profile-pic">
+            </div>
+        </div>
+
+        <!-- Skills -->
+<div class="card">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+        <!-- Frontend -->
+        <div class="skill-card">
+            <h3>Frontend</h3>
+            <p>HTML, CSS, JavaScript, React: Building responsive and interactive web pages with structured markup and dynamic content.</p>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-card">
+            <h3>Backend</h3>
+            <p>Python (Flask, Django), Node.js: Developing server-side logic, REST APIs, database interactions, and web application functionality.</p>
+        </div>
+
+        <!-- CSS & Design -->
+        <div class="skill-card">
+            <h3>CSS & Styling</h3>
+            <p>
+        Responsive design, Flexbox, Grid, animations, themes, and utility-first frameworks like <b>Bootstrap</b> and <b>Tailwind CSS</b>. 
+        Creating visually appealing, user-friendly, and mobile-responsive web interfaces.
+    </p>
+        </div>
+
+        <!-- AI & ML -->
+        <div class="skill-card">
+            <h3>AI & ML</h3>
+            <p>Basic understanding of machine learning algorithms, data preprocessing, model implementation, and AI concepts.</p>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-card">
+            <h3>Databases</h3>
+            <p>MySQL: Designing schemas, performing queries, and managing application data effectively.</p>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-card">
+            <h3>Tools & Others</h3>
+            <p>Git, GitHub, VS Code, Postman: Version control, debugging, and API testing for efficient development workflow.</p>
+        </div>
+    </div>
+</div>
+
+
+       <!-- Coding Stats -->
+<div class="stats-row">
+    <div class="stat-card">
+        <h2>LeetCode</h2>
+        {% if leetcode %}
+            <p><b>Username:</b> RajendranSubramaniam</p>
+            <p><b>Ranking:</b> {{ leetcode.profile.ranking }}</p>
+            <p><b>Reputation:</b> {{ leetcode.profile.reputation }}</p>
+            <p>I have solved multiple algorithmic challenges on LeetCode, improving problem-solving skills and coding efficiency.</p>
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+
+    <div class="stat-card">
+        <h2>CodeChef</h2>
+        {% if codechef %}
+            <p><b>Username:</b> rajendran_97</p>
+            <p><b>Rating:</b> {{ codechef.rating }} ({{ codechef.stars }})</p>
+            <p><b>Global Rank:</b> {{ codechef.global_rank }}</p>
+            <p>I actively participate in competitive programming contests on CodeChef, enhancing logical thinking and coding speed.</p>
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+</div>
+
+        <!-- Education -->
+        <div class="card">
+            <h2>Education</h2>
+            <ul>
+                <li><span class="section-header">B.E- Electronics and Communication Engineering</span> - Bannari Amman Institute of Technology (2015-2019)</li>
+                <li><span class="section-header">Higher Secondary</span> - Bannari Amman Vidya Niketan Matric Higher
+Secondary School | Mar 2015</li>
+                <li><span class="section-header">Secondary School</span> - Little Flower Matric Higher Secondary School |
+Mar 2013</li>
+            </ul>
+        </div>
+        <!-- Certifications -->
+<!-- <div class="card">
+    <h2>Certifications</h2>
+    <div class="cert-card" style="max-width:400px; margin:auto; background:#e3f2fd; padding:15px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center;">
+        <img src="/static/certificate.png" alt="certificate" style="width:100%; border-radius:8px; margin-bottom:10px;">
+        <p><b></b> - Xplore It Corp (2025)</p>
+    </div>
+</div> -->
+<!-- Certifications -->
+<!-- <div class="card">
+    <h2>Certifications</h2>
+    <ul>
+        <li>
+            <a href="/static/certificate.png" target="_blank">
+              <span class="section-header">  Python with Artificial Intelligence Machine Learning Data Science - Xplore It Corp (2025)
+            </a>
+        </li>
+    </ul>
+</div> -->
+<!-- Certifications -->
+<div class="card">
+    <h2>Certifications</h2>
+    <ul>
+        <li style="margin-bottom:10px;">
+            <span class="section-header">Python with Artificial Intelligence Machine Learning Data Science</span> - Xplore It Corp (2025)
+            <a href="/static/certificate.png" target="_blank" style="
+                display:inline-block;
+                margin-left:10px;
+                padding:5px 12px;
+                background-color:#1565c0;
+                color:#fff;
+                border-radius:5px;
+                font-size:0.9rem;
+                text-decoration:none;
+                transition:0.3s;
+            " onmouseover="this.style.backgroundColor='#0d47a1'" onmouseout="this.style.backgroundColor='#1565c0'">
+                View
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+
+      
+
+<!-- Experience -->
+<div class="card">
+    <h2>Experience</h2>
+    <ul>
+        <li>
+            <span class="section-header">Mentor</span> at Focus Edumatics Pvt Ltd (2022-2024)  
+            <p style="margin-left:20px; margin-top:5px;">Promoted to mentor role to guide and train new joiners, helping them understand teaching techniques, curriculum, and student management.</p>
+        </li>
+        <li>
+            <span class="section-header">Online Tutor</span> at Focus Edumatics Pvt Ltd (2019-2022)  
+            <p style="margin-left:20px; margin-top:5px;">Provided one-on-one tutoring sessions in Mathematics to American students, improving their problem-solving and analytical skills.</p>
+        </li>
+        <li>
+            <span class="section-header">Intern</span> at Vasantha Advanced Systems (2018)  
+            <p style="margin-left:20px; margin-top:5px;">Conducted quality checks, documented test results, and assisted in ensuring product quality and compliance with standards.</p>
+        </li>
+    </ul>
+</div>
+
+
+
+<!-- Projects Section -->
+<div class="card">
+    <h2>Projects</h2>
+    <div class="projects-grid" style="display:flex; flex-direction:column; gap:15px;">
+
+        <!-- Project 1: Portfolio -->
+        <div class="project-card" style="background:#ffffff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            <h3>Portfolio Website | Aug 2025</h3>
+            <p><b>Technologies:</b> Python, Flask, HTML/CSS, Bootstrap, JavaScript</p>
+            <p>Developed my personal portfolio website to showcase skills, experience, projects, and certifications. Integrated dynamic features like fetching real-time LeetCode and CodeChef stats, and implemented responsive design with Bootstrap.</p>
+        </div>
+
+        <!-- Project 2: Fertilizer Recommendation System -->
+        <div class="project-card" style="background:#ffffff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            <h3>Fertilizer Recommendation System | May 2025</h3>
+            <p><b>Technologies:</b> Python, Pandas, RandomForestClassifier</p>
+            <p>Collected and preprocessed data including NPK values, soil type, crop type, and moisture levels. Trained a Random Forest Classifier to accurately suggest suitable fertilizers for given conditions.</p>
+        </div>
+
+        <!-- Project 3: HireX -->
+        <div class="project-card" style="background:#ffffff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            <h3>HireX | Apr 2025</h3>
+            <p><b>Technologies:</b> Python, Django, HTML/CSS, SQLite</p>
+            <p>Developed a web-based platform that connects job seekers with recruiters. Implemented separate registration and login modules for job seekers and recruiters.</p>
+        </div>
+
+        <!-- Project 4: Payroll Management System -->
+        <div class="project-card" style="background:#ffffff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+            <h3>Payroll Management System | Mar 2025</h3>
+            <p><b>Technologies:</b> Flask, SQLite, HTML/CSS</p>
+            <p>Designed a responsive UI using Bootstrap/CSS. Enabled salary calculation, employee management, and record-keeping functionalities.</p>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    </div>
+</body>
+</html>
