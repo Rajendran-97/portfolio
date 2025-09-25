@@ -1,6 +1,4 @@
 from flask import Flask, render_template
-from leetcode_api import get_leetcode_stats
-from codechef_api import get_codechef_stats
 
 app = Flask(__name__)
 
@@ -21,13 +19,21 @@ def home():
         "resume": "/static/RajendranSubramaniam.pdf"
     }
 
-    # Fetch dynamic stats
-    leetcode = get_leetcode_stats("RajendranSubramaniam")
-    codechef = get_codechef_stats("rajendran_97")
+    # ✅ Manual coding stats (update when needed)
+    leetcode = {
+        "username": "RajendranSubramaniam",
+        "ranking": "500000+",
+        "reputation": "0",
+        "star_rating": "0.5",
+        "problems_solved": 5
+    }
 
-    # Optional: Print to console for debugging
-    print("LeetCode:", leetcode)
-    print("CodeChef:", codechef)
+    codechef = {
+        "username": "rajendran_97",
+        "rating": "1350",
+        "stars": "★",
+        "global_rank": "N/A"
+    }
 
     return render_template(
         "index.html",
